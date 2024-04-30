@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Ruleta</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="seleccionar_idioma">Seleccionar idioma:</string>
+
+    <string name="txt1Historial">Historial de Partidas</string>
+    <string name="txt1Apuesta">Apuesta</string>
+    <string name="txt1Premio">Premio</string>
+    <string name="txt1Resultado">Resultado</string>
+    <string name="txt1TotalMonedas">Total de Monedas</string>
+    <string name="txt1Retirarse">Volver al Menú</string>
+
+    <string name="txt2IniciarSesión">Iniciar Sesión</string>
+    <string name="txt2Salir">Salir</string>
+    <string name="txt2Opciones">Opciones</string>
+
+    <string name="txt3IniciarPartida">Iniciar Partida</string>
+    <string name="txt3VerResultados">Ver Resultados</string>
+    <string name="txt3ReiniciarMonedas">Reiniciar</string>
+    <string name="txt3Salir">Salir</string>
+
+    <string name="txt4Musica">Seleccionar Música</string>
+    <string name="txt4Volver">Volver</string>
+    <string name="txt4Desactivar">Desactivar música de fondo</string>
+    <string name="txt4Idioma">Idioma</string>
+
+    <string name="txt5Apostado">Has apostado:</string>
+    <string name="txt5Tienes">Ahora tienes:</string>
+    <string name="txt5Volver">Volver a Tirar</string>
+    <string name="txt5Retirarse">Retirarse</string>
+
+    <string name="txt6Apostar">¿Cuánto quieres apostar?</string>
+    <string name="txt6Tirar">Tirar</string>
+    <string name="txt6Retirarse">Retirarse</string>
+
+    <string name="txt9Apuesta">Apuesta</string>
+    <string name="txt9Premio">Premio</string>
+    <string name="txt9Resultado">Resultado</string>
+    <string name="txt9Total">Monedas Totales</string>
+
+    <string name="txtaTiradas">Tiradas obtenidas correctamente: %d</string>
+    <string name="txtaHistorial">No hay historial de tiradas disponible</string>
+    <string name="txtaError">Error al obtener el historial de tiradas</string>
+
+    <string name="txtcIniciarSesion">Iniciar Sesión</string>
+    <string name="txtcIngresaNombreUsuario">Ingresa tu nombre de usuario:</string>
+    <string name="txtcAceptar">Aceptar</string>
+    <string name="txtcCancelar">Cancelar</string>
+    <string name="txtcNombreUsuario">Nombre de Usuario</string>
+
+    <string name="txteTituloReiniciarMonedas">Reiniciar Monedas</string>
+    <string name="txteMensajeReiniciarMonedas">¿Estás seguro de que quieres reiniciar tus monedas a 100?</string>
+    <string name="txteAceptar">Sí</string>
+    <string name="txteCancelar">No</string>
+    <string name="txteMonedasReiniciadas">Monedas reiniciadas a 100.</string>
+    <string name="txteErrorReiniciarMonedas">Error al reiniciar monedas.</string>
+
+    <string name="txthImagenGuardada">Imagen guardada en la galería.</string>
+    <string name="txthErrorGuardarImagen">Error al guardar la imagen: </string>
+    <string name="txthHasGanado">Has ganado:</string>
+    <string name="txthHasPerdido">Has perdido:</string>
+
+    <string name="txtiApuestaInvalida">Apuesta inválida. Debe ser entre 10 y %1$d</string>
+    <string name="txtiNumeroValido">Por favor, introduce un número válido.</string>
+    <string name="txtiIntroduceValorApuesta">Por favor, introduce un valor de apuesta.</string>
+
+    <string name="txtiEnhorabuena">x10 ¡Enhorabuena!</string>
+    <string name="txtiBienHecho">x2 Bien hecho</string>
+    <string name="txtiMalaSuerte">/5 ¡Qué mala suerte!</string>
+    <string name="txtiQuiebra">¡Quiebra! ¡Qué mala suerte!</string>
+    <string name="txtiNoEstaMal">x1.5 No está mal</string>
+    <string name="txtiPudoSerPeor">/2 Pudo ser peor</string>
+    <string name="txtiGenial">x5 ¡Genial!</string>
+    <string name="txtiEsAlgo">/1.5 Es algo</string>
+    <string name="txtiAlgoHaIdoMal">¡Algo ha ido mal!</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
+</resources>

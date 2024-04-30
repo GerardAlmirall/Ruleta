@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="#20001D">
+
+    <!-- Configuraciones de TextView ajustadas para compartir el espacio disponible -->
+    <TextView
+        android:id="@+id/txtApuesta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt9Apuesta"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:gravity="center_horizontal"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/txtPremio"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtPremio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt9Premio"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:gravity="center_horizontal"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintStart_toEndOf="@id/txtApuesta"
+        app:layout_constraintEnd_toStartOf="@id/txtResultado"
+        app:layout_constraintTop_toTopOf="@id/txtApuesta"/>
+
+    <TextView
+        android:id="@+id/txtResultado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txt9Resultado"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:gravity="center_horizontal"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintStart_toEndOf="@id/txtPremio"
+        app:layout_constraintEnd_toStartOf="@id/txtMonedas"
+        app:layout_constraintTop_toTopOf="@id/txtPremio"/>
+
+    <TextView
+        android:id="@+id/txtMonedas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/txt9Total"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/txtResultado"
+        app:layout_constraintTop_toTopOf="@id/txtResultado"
+        app:layout_constraintWidth_percent="0.25" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
