@@ -19,9 +19,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ruleta.DB.DBconexion;
 import java.io.OutputStream;
 import android.os.AsyncTask;
-
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TimeZone;
+import android.provider.CalendarContract;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class Resultado extends AppCompatActivity {
+    private static final String NOTIFICATION_CHANNEL_ID = "channel_id";
+    private static final int NOTIFICATION_ID = 1234;
+    private static final int REQUEST_CODE_PERMISSIONS = 123;
+    private static final String[] NECESSARY_PERMISSIONS = new String[]{
+            Manifest.permission.WRITE_CALENDAR,
+            Manifest.permission.READ_CALENDAR,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+    };
     private DBconexion dbConexion;
     private class SaveImageTask extends AsyncTask<Bitmap, Void, String> {
         private Context context;
@@ -126,6 +144,40 @@ public class Resultado extends AppCompatActivity {
             startActivity(tiradaIntent);
         });
     }
+
+    private void requestPermissionsIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> missingPermissions = new ArrayList<>();
+            for (String permission : NECESSARY_PERMISSIONS) {
+                if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                    missingPermissions.add(permission);
+                }
+            }
+
+            if (!missingPermissions.isEmpty()) {
+                ActivityCompat.requestPermissions(this, missingPermissions.toArray(new String[0]), REQUEST_CODE_PERMISSIONS);
+            }
+        }
+    }
+
+    // Method invoked when permissions are granted or denied
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            for (int i = 0; i < permissions.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                    String messageGranted = getString(R.string.txtRSiPermiso, permissions[i]);
+                    Log.d("Permisos", messageGranted);
+                    Toast.makeText(this, messageGranted, Toast.LENGTH_SHORT).show();
+                } else {
+                    String messageDenied = getString(R.string.txtRNoPermiso, permissions[i]);
+                    Log.e("PermisosError", messageDenied);
+                    Toast.makeText(this, messageDenied, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
     public long obtenerUsuarioIdPorNombre(String nombreUsuario) {
         SQLiteDatabase db = dbConexion.getReadableDatabase();
         Cursor cursor = db.query("Usuario", new String[]{"id"}, "nombreUsuario = ?", new String[]{nombreUsuario}, null, null, null);
@@ -168,6 +220,57 @@ public class Resultado extends AppCompatActivity {
 
 
         new SaveImageTask(this).execute(bitmap);
+
+        // Recupera el nombreUsuario de Preferencias
+        SharedPreferences prefs = getSharedPreferences("prefsRuleta", MODE_PRIVATE);
+        String nombreUsuario = prefs.getString("nombreUsuario", "");
+    }
+    private void guardarEventoEnCalendario(String nombreUsuario, int monedasGanadas) {
+        long currentTimeMillis = System.currentTimeMillis();
+        long calID = obtenerIdCalendarioPorDefecto();
+
+        if (calID == -1) {
+            Log.e("CalendarioError", "No se ha localizado ningún ID válido");
+            Toast.makeText(this, "No valid calendar found", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put(CalendarContract.Events.DTSTART, currentTimeMillis);
+        values.put(CalendarContract.Events.DTEND, currentTimeMillis + 3600000); // 1 hour later
+        values.put(CalendarContract.Events.TITLE, getString(R.string.event_title, nombreUsuario));
+        values.put(CalendarContract.Events.DESCRIPTION, getString(R.string.event_description, nombreUsuario, monedasGanadas));
+        values.put(CalendarContract.Events.CALENDAR_ID, calID);
+        values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
+
+        Uri uri = getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
+        if (uri != null) {
+            Log.d("Calendario", "Evento añadido al calendario con URI: " + uri.toString());
+            Toast.makeText(this, R.string.event_added_to_calendar, Toast.LENGTH_SHORT).show();
+        } else {
+            Log.e("CalendarioError", "Error añadiendo evento al calendario");
+            Toast.makeText(this, R.string.error_adding_event_to_calendar, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Intenta obtener el ID del calendario por defecto.
+     */
+    private long obtenerIdCalendarioPorDefecto() {
+        Cursor cursor = getContentResolver().query(
+                CalendarContract.Calendars.CONTENT_URI,
+                new String[]{CalendarContract.Calendars._ID},
+                CalendarContract.Calendars.VISIBLE + " = 1",
+                null,
+                CalendarContract.Calendars._ID + " ASC"
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            long id = cursor.getLong(0);
+            cursor.close();
+            return id;
+        }
+        return -1; // No se ha localizado calendario
     }
     private boolean isScreenshotTaken = false;
     @Override
@@ -178,9 +281,20 @@ public class Resultado extends AppCompatActivity {
             int monedasGanadas = intent.getIntExtra("monedasGanadas", 0);
             if (monedasGanadas > 0) {
                 captureAndSaveDisplay();
+                // Recupera el nombreUsuario de Preferencias
+                SharedPreferences prefs = getSharedPreferences("prefsRuleta", MODE_PRIVATE);
+                String nombreUsuario = prefs.getString("nombreUsuario", "");
+
+                // Comprueba si se tienen permisos
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
+                    // Intenta añadir evento
+                    guardarEventoEnCalendario(nombreUsuario, monedasGanadas);
+                } else {
+                    // Permiso denegado
+                    Toast.makeText(this, "WRITE_CALENDAR permission denied", Toast.LENGTH_SHORT).show();
+                }
             }
             isScreenshotTaken = true;
         }
     }
-
 }

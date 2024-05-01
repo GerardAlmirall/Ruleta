@@ -5,6 +5,11 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/layout/activity_ayuda.xml">
+        <config>
+          <theme>@style/Theme.Ruleta</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/layout/activity_historial_tiradas.xml">
         <config>
           <theme>@style/Theme.Ruleta</theme>
@@ -56,7 +61,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e76e435-7c2d-4bee-a962-ed895dfd218c" name="Changes" comment="intentando subirlo" />
+    <list default="true" id="8e76e435-7c2d-4bee-a962-ed895dfd218c" name="Changes" comment="intentando subirlo">
+      <change afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/AyudaActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/layout/activity_ayuda.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/DB/DBmanager.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/DB/DBmanager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/Resultado.java" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/java/com/example/ruleta/Resultado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-ca/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-ca/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-en/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-en/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-es/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values-es/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectosAndroid/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,16 +110,32 @@
       <list>
         <option value="resourceFile" />
         <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="entrega" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GerardAlmirall&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="974824bd-f2e0-41ae-a69f-c9f05683e2b5" />
+        <option name="url" value="https://github.com/GerardAlmirall/Ruleta.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -112,22 +147,23 @@
     <option name="showLibraryContents" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ResourceManagerPrefKey.ResourceType": "XML",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/UOC/DAM/5o sem/Aplicaciones nativas/Producto 3/AppArchitects-main/ProyectosAndroid/app/src/main/res/values-en",
-    "project.structure.last.edited": "SDK Location",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ResourceManagerPrefKey.ResourceType&quot;: &quot;XML&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;entrega&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/UOC/DAM/5o sem/Aplicaciones nativas/Producto 3/AppArchitects-main/ProyectosAndroid/app/src/main/res/values-en&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK Location&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\UOC\DAM\5o sem\Aplicaciones nativas\Producto 3\AppArchitects-main\ProyectosAndroid\app\src\main\res\values-en" />
