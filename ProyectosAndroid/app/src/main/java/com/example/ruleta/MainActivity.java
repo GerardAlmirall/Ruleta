@@ -1,10 +1,15 @@
 package com.example.ruleta;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,13 +21,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.ruleta.DB.DBmanager;
 
 public class MainActivity extends AppCompatActivity {
 
     private DBmanager dbManager;
-
+    // Constante para el código de solicitud de permiso de ubicación
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +61,27 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 String nombreUsuario = input.getText().toString();
                                 if (!nombreUsuario.trim().isEmpty()) {
-                                    // Consultar las monedas totales del usuario
-                                    int monedasTotales = obtenerMonedasTotalesDelUsuario(nombreUsuario);
+                                    obtenerYAlmacenarUbicacion(new UbicacionCallback() {
+                                        @Override
+                                        public void onUbicacionObtenida(String ubicacion) {
+                                            // Consultar las monedas totales del usuario
+                                            int monedasTotales = obtenerMonedasTotalesDelUsuario(nombreUsuario);
 
-                                    // Llamar a verificarEInsertarUsuario con las monedas totales obtenidas
-                                    long usuarioId = dbManager.verificarEInsertarUsuario(nombreUsuario, monedasTotales);
+                                            // Llamar a verificarEInsertarUsuario con las monedas totales obtenidas
+                                            long usuarioId = dbManager.verificarEInsertarUsuario(nombreUsuario, monedasTotales, ubicacion);
 
-                                    // Guarda el nombre en SharedPreferences
-                                    guardarNombreUsuarioEnPrefs(nombreUsuario);
-                                    // Guarda el ID del usuario en SharedPreferences
-                                    guardarIdUsuarioEnPrefs(usuarioId);
-                                    // Actualiza las monedas totales en SharedPreferences
-                                    guardarMonedasTotalesEnPrefs(monedasTotales);
+                                            // Guarda el nombre en SharedPreferences
+                                            guardarNombreUsuarioEnPrefs(nombreUsuario);
+                                            // Guarda el ID del usuario en SharedPreferences
+                                            guardarIdUsuarioEnPrefs(usuarioId);
+                                            // Actualiza las monedas totales en SharedPreferences
+                                            guardarMonedasTotalesEnPrefs(monedasTotales);
 
-                                    // Lanza la actividad Menu
-                                    Intent intent = new Intent(MainActivity.this, Menu.class);
-                                    startActivity(intent);
+                                            // Lanza la actividad Menu
+                                            Intent intent = new Intent(MainActivity.this, Menu.class);
+                                            startActivity(intent);
+                                        }
+                                    });
                                 } else {
                                     Toast.makeText(MainActivity.this, getString(R.string.txtcIngresaNombreUsuario), Toast.LENGTH_LONG).show();
                                 }
@@ -92,7 +105,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Opciones.class);
             startActivity(intent);
         });
+        Button btnAyuda = findViewById(R.id.btnAyuda);
+        btnAyuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AyudaActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -121,6 +143,45 @@ public class MainActivity extends AppCompatActivity {
         stopService(musicServiceIntent);
         super.onDestroy();
     }
+
+    private void obtenerYAlmacenarUbicacion(final UbicacionCallback callback) {
+        // Inicializar el LocationManager
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // Verificar si se tienen permisos de ubicación
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Obtener la última ubicación conocida del proveedor de ubicación
+            Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            // Verificar si la ubicación no es nula
+            if (lastKnownLocation != null) {
+                // Obtener la latitud y longitud
+                double latitude = lastKnownLocation.getLatitude();
+                double longitude = lastKnownLocation.getLongitude();
+
+                // Convertir la latitud y longitud a una cadena de ubicación
+                String ubicacion = "X: " + latitude + ", Y: " + longitude;
+                Log.e("MainActivity", "Se ha obtenido la ubicación actual.");
+
+                // Llamar al callback con la ubicación obtenida
+                callback.onUbicacionObtenida(ubicacion);
+            } else {
+                // Manejar el caso en que la ubicación no esté disponible
+                Log.e("MainActivity", "No se pudo obtener la ubicación actual.");
+                // Llamar al callback con un valor nulo
+                callback.onUbicacionObtenida(null);
+            }
+        } else {
+            // Si no se tienen permisos, solicitarlos al usuario
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION_PERMISSION);
+        }
+    }
+
+
+// Interfaz para manejar la ubicación obtenida de manera asíncrona
+private interface UbicacionCallback {
+    void onUbicacionObtenida(String ubicacion);
+}
 
     private int obtenerMonedasTotalesDelUsuario(String nombreUsuario) {
         SQLiteDatabase db = dbManager.dbConexion.obtenerDatabase();

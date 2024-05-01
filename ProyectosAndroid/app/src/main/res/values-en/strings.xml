@@ -17,6 +17,7 @@
     <string name="txt2IniciarSesión">Log In</string>
     <string name="txt2Salir">Exit</string>
     <string name="txt2Opciones">Options</string>
+    <string name="txt2Ayuda">Help</string>
 
     <string name="txt3IniciarPartida">Start Game</string>
     <string name="txt3VerResultados">View Results</string>
@@ -76,6 +77,14 @@
     <string name="txtiGenial">x5 Great!</string>
     <string name="txtiEsAlgo">/1.5 It\'s something</string>
     <string name="txtiAlgoHaIdoMal">Something went wrong!</string>
+    <string name="txtRNoPermiso">Permission %1$s denied</string>
+    <string name="txtRSiPermiso">Permission %1$s granted</string>
+
+    <string name="event_title">Victory for %1$s</string>
+    <string name="event_description">%1$s has obtained %2$d coins spinning the roulette.</string>
+    <string name="event_added_to_calendar">Event added to your calendar</string>
+    <string name="error_adding_event_to_calendar">There was an error adding the event to your calendar</string>
+    <string name="url_help_page">https://sites.google.com/uoc.edu/apparchitects/ayuda/help</string>
 
 
 

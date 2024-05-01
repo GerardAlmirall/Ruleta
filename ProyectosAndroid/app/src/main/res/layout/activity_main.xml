@@ -24,7 +24,7 @@
         android:id="@+id/btnInicioSesion"
         android:layout_width="148dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="400dp"
         android:backgroundTint="#20001D"
         android:text="@string/txt2IniciarSesión"
         app:cornerRadius="0dp"
@@ -47,10 +47,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOpciones"
+        app:layout_constraintTop_toBottomOf="@+id/btnAyuda"
         app:strokeColor="#FFB800"
         app:strokeWidth="2dp"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnAyuda"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#20001D"
+        android:text="@string/txt2Ayuda"
+        app:cornerRadius="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOpciones"
+        app:strokeColor="#FFB800"
+        app:strokeWidth="2dp" />
 
     <Button
         android:id="@+id/btnOpciones"

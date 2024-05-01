@@ -20,7 +20,7 @@ public class DBmanager {
         this.dbConexion = new DBconexion(context);
     }
 
-    public long verificarEInsertarUsuario(String nombreUsuario, int monedasTotales) {
+    public long verificarEInsertarUsuario(String nombreUsuario, int monedasTotales, String ubicacion) {
         SQLiteDatabase db = dbConexion.getWritableDatabase();
 
         // Intenta encontrar el usuario por su nombre

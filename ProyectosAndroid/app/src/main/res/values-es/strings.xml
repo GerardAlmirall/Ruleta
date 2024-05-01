@@ -17,6 +17,7 @@
     <string name="txt2IniciarSesión">Iniciar Sesión</string>
     <string name="txt2Salir">Salir</string>
     <string name="txt2Opciones">Opciones</string>
+    <string name="txt2Ayuda">Ayuda</string>
 
     <string name="txt3IniciarPartida">Iniciar Partida</string>
     <string name="txt3VerResultados">Ver Resultados</string>
@@ -77,6 +78,15 @@
     <string name="txtiGenial">x5 ¡Genial!</string>
     <string name="txtiEsAlgo">/1.5 Es algo</string>
     <string name="txtiAlgoHaIdoMal">¡Algo ha ido mal!</string>
+    <string name="txtRNoPermiso">Permiso %1$s denegado</string>
+    <string name="txtRSiPermiso">Permiso %1$s otorgado</string>
+
+    <string name="event_title">Victoria de %1$s</string>
+    <string name="event_description">%1$s ha ganado %2$d monedas en la ruleta.</string>
+    <string name="event_added_to_calendar">Evento añadido al calendario</string>
+    <string name="error_adding_event_to_calendar">Error al añadir el evento al calendario</string>
+    <string name="url_help_page">https://sites.google.com/uoc.edu/apparchitects/ayuda</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
