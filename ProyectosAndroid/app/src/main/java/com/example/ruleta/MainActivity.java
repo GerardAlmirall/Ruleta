@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private DBmanager dbManager;
     // Constante para el código de solicitud de permiso de ubicación
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1001;
+    private static final int REQUEST_CODE_CALENDAR_PERMISSION = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        checkCalendarPermission();
         Button btnSalir = findViewById(R.id.btnSalir);
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +145,15 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    // Método para verificar los permisos del calendario
+    private void checkCalendarPermission() {
+        // Verificar si los permisos de lectura y escritura del calendario ya han sido otorgados
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            // Si los permisos no se han otorgado, solicitarlos al usuario
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR}, REQUEST_CODE_CALENDAR_PERMISSION);
+        }
+    }
     private void obtenerYAlmacenarUbicacion(final UbicacionCallback callback) {
         // Inicializar el LocationManager
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

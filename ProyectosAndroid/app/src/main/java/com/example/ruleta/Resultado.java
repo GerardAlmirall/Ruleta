@@ -167,9 +167,11 @@ public class Resultado extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    String messageGranted = getString(R.string.txtRSiPermiso, permissions[i]);
-                    Log.d("Permisos", messageGranted);
-                    Toast.makeText(this, messageGranted, Toast.LENGTH_SHORT).show();
+                    // Permiso otorgado, realizar la acción requerida
+                    if (permissions[i].equals(Manifest.permission.WRITE_CALENDAR)) {
+                        // Acceso al calendario otorgado, intentar añadir el evento al calendario
+                        captureAndSaveDisplay();
+                    }
                 } else {
                     String messageDenied = getString(R.string.txtRNoPermiso, permissions[i]);
                     Log.e("PermisosError", messageDenied);
