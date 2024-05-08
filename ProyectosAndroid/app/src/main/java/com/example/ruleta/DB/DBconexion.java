@@ -23,7 +23,9 @@ public class DBconexion extends SQLiteOpenHelper {
         String CREAR_TBL_USUARIO = "CREATE TABLE Usuario (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nombreUsuario TEXT," +
-                "monedasTotales INTEGER)";
+                "monedasTotales INTEGER," +
+                "ubicacion TEXT)";
+
         db.execSQL(CREAR_TBL_USUARIO);
 
         String CREAR_TBL_TIRADA = "CREATE TABLE Tirada (" +

@@ -47,8 +47,8 @@ public class DBmanager {
             Log.d("DBmanager", "Usuario no encontrado, procediendo a insertar nuevo usuario: " + nombreUsuario);
             ContentValues values = new ContentValues();
             values.put("nombreUsuario", nombreUsuario);
-            values.put("monedasTotales", monedasTotales); // Valor de monedas totales proporcionado
-
+            values.put("monedasTotales", monedasTotales);
+            values.put("ubicacion", ubicacion);
             id = db.insert("Usuario", null, values);
 
             if (id == -1) {
@@ -58,7 +58,7 @@ public class DBmanager {
             }
         }
 
-        cursor.close(); // Asegúrate de cerrar el cursor después de usarlo
+        cursor.close();
         return id;
     }
    /*
